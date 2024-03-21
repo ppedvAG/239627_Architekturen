@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ppedv.CubesPizza.Core\ppedv.CubesPizza.Core.csproj" />
+    <ProjectReference Include="..\ppedv.CubesPizza.Data.EfCore\ppedv.CubesPizza.Data.EfCore.csproj" />
+    <ProjectReference Include="..\ppedv.CubesPizza.Model\ppedv.CubesPizza.Model.csproj" />
+  </ItemGroup>
+
+</Project>
