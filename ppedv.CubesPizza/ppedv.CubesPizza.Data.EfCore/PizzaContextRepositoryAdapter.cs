@@ -39,7 +39,7 @@ namespace ppedv.CubesPizza.Data.EfCore
 
         public void Update<T>(Entity entity) where T : Entity
         {
-            pizzaContext.Remove(entity);
+            pizzaContext.Update(entity);
         }
     }
 }
