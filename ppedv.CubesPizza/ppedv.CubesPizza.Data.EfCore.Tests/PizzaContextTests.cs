@@ -1,4 +1,8 @@
+using AutoFixture;
+using AutoFixture.Kernel;
+using FluentAssertions;
 using ppedv.CubesPizza.Model;
+using System.Reflection;
 
 namespace ppedv.CubesPizza.Data.EfCore.Tests
 {
@@ -102,6 +106,48 @@ namespace ppedv.CubesPizza.Data.EfCore.Tests
                 var loaded = con.Pizzas.Find(pizza.Id);
                 Assert.Null(loaded);
             }
+        }
+
+
+        [Fact]
+        public void Can_create_and_read_Pizza_with_AutoFixture_and_FluentAssertions()
+        {
+            var fix = new Fixture();
+            fix.Behaviors.Add(new OmitOnRecursionBehavior());
+            fix.Customizations.Add(new PropertyNameOmitter(nameof(Entity.Id), nameof(Entity.Created), nameof(Entity.Modified)));
+            var pizza = fix.Create<Pizza>();
+
+            using (var con = new PizzaContext(conString))
+            {
+                con.Database.EnsureCreated();
+                con.Pizzas.Add(pizza);
+                con.SaveChanges();
+            }
+
+            using (var con = new PizzaContext(conString))
+            {
+                var loaded = con.Pizzas.Find(pizza.Id);
+                loaded.Should().BeEquivalentTo(pizza,x=>x.IgnoringCyclicReferences());
+            }
+        }
+    }
+
+    internal class PropertyNameOmitter : ISpecimenBuilder
+    {
+        private readonly IEnumerable<string> names;
+
+        internal PropertyNameOmitter(params string[] names)
+        {
+            this.names = names;
+        }
+
+        public object Create(object request, ISpecimenContext context)
+        {
+            var propInfo = request as PropertyInfo;
+            if (propInfo != null && names.Contains(propInfo.Name))
+                return new OmitSpecimen();
+
+            return new NoSpecimen();
         }
     }
 }
