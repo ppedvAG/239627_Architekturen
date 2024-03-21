@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.CubesPizza.Data.EfCor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.CubesPizza.Core", "ppedv.CubesPizza.Core\ppedv.CubesPizza.Core.csproj", "{6511863D-A1FC-427E-A63A-D1264BED3DD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.CubesPizza.Core.Tests", "ppedv.CubesPizza.Core.Tests\ppedv.CubesPizza.Core.Tests.csproj", "{41BCD0D1-ACCC-47AF-A2E8-AB5782CBC242}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6511863D-A1FC-427E-A63A-D1264BED3DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6511863D-A1FC-427E-A63A-D1264BED3DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6511863D-A1FC-427E-A63A-D1264BED3DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41BCD0D1-ACCC-47AF-A2E8-AB5782CBC242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BCD0D1-ACCC-47AF-A2E8-AB5782CBC242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BCD0D1-ACCC-47AF-A2E8-AB5782CBC242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BCD0D1-ACCC-47AF-A2E8-AB5782CBC242}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
