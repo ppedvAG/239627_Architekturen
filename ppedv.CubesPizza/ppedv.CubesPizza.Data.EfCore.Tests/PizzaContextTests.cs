@@ -1,3 +1,5 @@
+using ppedv.CubesPizza.Model;
+
 namespace ppedv.CubesPizza.Data.EfCore.Tests
 {
     public class PizzaContextTests
@@ -16,6 +18,90 @@ namespace ppedv.CubesPizza.Data.EfCore.Tests
 
             //Assert
             Assert.True(result);
+        }
+
+        [Fact]
+        public void Can_add_Pizza()
+        {
+            var con = new PizzaContext(conString);
+            con.Database.EnsureCreated();
+            var pizza = new Pizza() { Name = "Pizza 1", Price = 6.66m };
+
+            con.Pizzas.Add(pizza);
+            var rowCount = con.SaveChanges();
+
+            Assert.Equal(1, rowCount);
+        }
+
+        [Fact]
+        public void Can_read_Pizza()
+        {
+            var pizza = new Pizza() { Name = "Pizza 2", Price = 5.55m };
+            using (var con = new PizzaContext(conString))
+            {
+                con.Database.EnsureCreated();
+                con.Pizzas.Add(pizza);
+                con.SaveChanges();
+            }
+
+            using (var con = new PizzaContext(conString))
+            {
+                var loaded = con.Pizzas.Find(pizza.Id);
+                Assert.NotNull(loaded);
+            }
+        }
+
+        [Fact]
+        public void Can_update_Pizza()
+        {
+            var pizza = new Pizza() { Name = "Pizza 3", Price = 4.44m };
+            decimal newPrice = 3.33m;
+            using (var con = new PizzaContext(conString))
+            {
+                con.Database.EnsureCreated();
+                con.Pizzas.Add(pizza);
+                con.SaveChanges();
+            }
+
+            using (var con = new PizzaContext(conString))
+            {
+                var loaded = con.Pizzas.Find(pizza.Id);
+                loaded.Price = newPrice;
+                var rowCount = con.SaveChanges();
+                Assert.Equal(1, rowCount);
+            }
+
+            using (var con = new PizzaContext(conString))
+            {
+                var loaded = con.Pizzas.Find(pizza.Id);
+                Assert.Equal(newPrice, loaded.Price);
+            }
+        }
+
+        [Fact]
+        public void Can_delete_Pizza()
+        {
+            var pizza = new Pizza() { Name = "Pizza 4", Price = 2.22m };
+            using (var con = new PizzaContext(conString))
+            {
+                con.Database.EnsureCreated();
+                con.Pizzas.Add(pizza);
+                con.SaveChanges();
+            }
+
+            using (var con = new PizzaContext(conString))
+            {
+                var loaded = con.Pizzas.Find(pizza.Id);
+                con.Remove(loaded);
+                var rowCount = con.SaveChanges();
+                Assert.Equal(1, rowCount);
+            }
+
+            using (var con = new PizzaContext(conString))
+            {
+                var loaded = con.Pizzas.Find(pizza.Id);
+                Assert.Null(loaded);
+            }
         }
     }
 }
