@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ppedv.CubesPizza.Core\ppedv.CubesPizza.Core.csproj" />
     <ProjectReference Include="..\ppedv.CubesPizza.Data.EfCore\ppedv.CubesPizza.Data.EfCore.csproj" />
     <ProjectReference Include="..\ppedv.CubesPizza.Model\ppedv.CubesPizza.Model.csproj" />
