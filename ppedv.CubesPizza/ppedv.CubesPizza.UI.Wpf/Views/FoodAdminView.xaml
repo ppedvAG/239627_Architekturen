@@ -6,11 +6,43 @@
              xmlns:local="clr-namespace:ppedv.CubesPizza.UI.Wpf.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Viewbox>
-            <TextBlock>
-                🍕🥦🍖🍺
-            </TextBlock>
-        </Viewbox>
-    </Grid>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button>Laden</Button>
+            <Button>Speichern</Button>
+            <Button>Neu</Button>
+            <Button>Löschen</Button>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid />
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label>Name</Label>
+                <TextBox Grid.Column="1"/>
+                <Label Grid.Row="1">Preis</Label>
+                <TextBox Grid.Row="1" Grid.Column="1"/>
+                <Label Grid.Row="2">Eigenschaften</Label>
+                <CheckBox Grid.Row="2" Grid.Column="1">Ist Vegetarisch</CheckBox>
+
+            </Grid>
+
+        </Grid>
+    </DockPanel>
 </UserControl>
