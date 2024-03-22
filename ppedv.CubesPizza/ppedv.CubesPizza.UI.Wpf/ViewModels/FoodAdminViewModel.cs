@@ -1,32 +1,45 @@
-﻿using ppedv.CubesPizza.Core;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ppedv.CubesPizza.Core;
 using ppedv.CubesPizza.Model;
 using ppedv.CubesPizza.Model.Contracts;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
 namespace ppedv.CubesPizza.UI.Wpf.ViewModels
 {
-    public class FoodAdminViewModel : INotifyPropertyChanged
+    public partial class FoodAdminViewModel : ObservableObject
     {
         IRepository repo;
         FoodService fs;
-        private Pizza selectedPizza;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         public SaveCommand SaveCommand { get; set; }
 
-        public ICollection<Pizza> PizzaList { get; set; }
-        public Pizza SelectedPizza
+        [RelayCommand]
+        private void AddNewPizza()
         {
-            get => selectedPizza; 
-            set
-            {
-                selectedPizza = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedPizza"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PreiseOhneMwST"));
-            }
+            var p = new Pizza() { Name = "NEU", Price = 6.66m };
+            repo.Add<Pizza>(p);
+            PizzaList.Add(p);
         }
+
+        public ObservableCollection<Pizza> PizzaList { get; set; }
+
+        //private Pizza selectedPizza;
+        //public Pizza SelectedPizza
+        //{
+        //    get => selectedPizza; 
+        //    set
+        //    {
+        //        selectedPizza = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedPizza"));
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PreiseOhneMwST"));
+        //    }
+        //}
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(PreiseOhneMwST))]
+        private Pizza selectedPizza;
 
         public string PreiseOhneMwST
         {
@@ -39,13 +52,11 @@ namespace ppedv.CubesPizza.UI.Wpf.ViewModels
             }
         }
 
-        public FoodAdminViewModel()
+        public FoodAdminViewModel(IRepository repo, FoodService fs)
         {
-            string conString = "Server=(localdb)\\mssqllocaldb;Database=CubesPizza_Tests;Trusted_Connection=true;";
-            repo = new ppedv.CubesPizza.Data.EfCore.PizzaContextRepositoryAdapter(conString);
-            fs = new FoodService(repo);
-
-            PizzaList = new List<Pizza>(repo.GetAll<Pizza>());
+            this.repo = repo;
+            this.fs = fs;
+            PizzaList = new ObservableCollection<Pizza>(repo.GetAll<Pizza>());
             SaveCommand = new SaveCommand(repo);
         }
 

@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ppedv.CubesPizza.UI.Wpf.ViewModels;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ppedv.CubesPizza.UI.Wpf.Views
 {
@@ -23,6 +12,7 @@ namespace ppedv.CubesPizza.UI.Wpf.Views
         public FoodAdminView()
         {
             InitializeComponent();
+            DataContext = App.Current.Services.GetService<FoodAdminViewModel>();
         }
     }
 }
