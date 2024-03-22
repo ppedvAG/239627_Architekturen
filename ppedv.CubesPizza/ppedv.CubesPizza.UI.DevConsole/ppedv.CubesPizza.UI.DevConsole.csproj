@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ppedv.CubesPizza.Core\ppedv.CubesPizza.Core.csproj" />
     <ProjectReference Include="..\ppedv.CubesPizza.Data.EfCore\ppedv.CubesPizza.Data.EfCore.csproj" />
+    <ProjectReference Include="..\ppedv.CubesPizza.Devices.BinFord\ppedv.CubesPizza.Devices.BinFord.csproj" />
     <ProjectReference Include="..\ppedv.CubesPizza.Model\ppedv.CubesPizza.Model.csproj" />
   </ItemGroup>
 
