@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Devices", "Devices", "{FE08
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.CubesPizza.Devices.BinFord", "ppedv.CubesPizza.Devices.BinFord\ppedv.CubesPizza.Devices.BinFord.csproj", "{FC7EBFCF-EC6C-46AC-B794-67B7F9E08ED0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.CubesPizza.UI.ASP_Blazor_Server", "ppedv.CubesPizza.UI.ASP_Blazor_Server\ppedv.CubesPizza.UI.ASP_Blazor_Server.csproj", "{2D175C71-F20D-4C23-85D8-C56E55594CB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{FC7EBFCF-EC6C-46AC-B794-67B7F9E08ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC7EBFCF-EC6C-46AC-B794-67B7F9E08ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC7EBFCF-EC6C-46AC-B794-67B7F9E08ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D175C71-F20D-4C23-85D8-C56E55594CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D175C71-F20D-4C23-85D8-C56E55594CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D175C71-F20D-4C23-85D8-C56E55594CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D175C71-F20D-4C23-85D8-C56E55594CB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{139DE3F4-6F47-4A45-8F88-87B5943E40A1} = {172242FE-93FF-4A21-9BF2-12B06DF18C0A}
 		{9C79ED80-F692-442F-95CE-0974CA7BA124} = {EF35D96E-2718-4244-A1AE-54D163B4B258}
 		{FC7EBFCF-EC6C-46AC-B794-67B7F9E08ED0} = {FE08AB15-3434-4C0A-8F50-F9B16D864B71}
+		{2D175C71-F20D-4C23-85D8-C56E55594CB5} = {172242FE-93FF-4A21-9BF2-12B06DF18C0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00D49AFD-B9A1-4386-80A6-F5662DF3A5B1}
