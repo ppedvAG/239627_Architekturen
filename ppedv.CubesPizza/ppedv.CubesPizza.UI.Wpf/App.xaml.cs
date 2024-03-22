@@ -39,7 +39,7 @@ namespace ppedv.CubesPizza.UI.Wpf
 
             string conString = "Server=(localdb)\\mssqllocaldb;Database=CubesPizza_Tests;Trusted_Connection=true;";
 
-            services.AddSingleton<IRepository>(x=> new ppedv.CubesPizza.Data.EfCore.PizzaContextRepositoryAdapter(conString));
+            services.AddSingleton<IUnitOfWork>(x=> new ppedv.CubesPizza.Data.EfCore.PizzaContextUnitOfWorkAdapter(conString));
             services.AddScoped<FoodService>();
             services.AddSingleton<FoodAdminViewModel>();
 

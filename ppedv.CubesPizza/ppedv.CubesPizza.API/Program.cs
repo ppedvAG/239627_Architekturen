@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 string conString = "Server=(localdb)\\mssqllocaldb;Database=CubesPizza_Tests;Trusted_Connection=true;";
-builder.Services.AddScoped<IRepository>(x => new PizzaContextRepositoryAdapter(conString));
+builder.Services.AddScoped<IUnitOfWork>(x => new PizzaContextUnitOfWorkAdapter(conString));
 builder.Services.AddScoped<FoodService>();
 
 var app = builder.Build();

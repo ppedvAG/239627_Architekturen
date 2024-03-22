@@ -31,10 +31,10 @@ var builder = new ContainerBuilder();
 builder.RegisterType<FoodService>().As<IFoodService>();
 builder.RegisterType<OrderService>().As<IOrderService>();
 builder.RegisterType<BinFordOvenControl>().As<IOvenControl>();
-builder.Register(x => new ppedv.CubesPizza.Data.EfCore.PizzaContextRepositoryAdapter(conString)).As<IRepository>().SingleInstance();
+builder.Register(x => new ppedv.CubesPizza.Data.EfCore.PizzaContextUnitOfWorkAdapter(conString)).As<IUnitOfWork>().SingleInstance();
 var container = builder.Build();
 
-var repo = container.Resolve<IRepository>();
+var uow = container.Resolve<IUnitOfWork>();
 var fs = container.Resolve<IFoodService>();
 var speisen = fs.GetSpeisekarte();
 var os = container.Resolve<IOrderService>();
@@ -52,7 +52,7 @@ foreach (var p in speisen)
 
 
 Console.WriteLine("Bestellungen");
-foreach (var o in repo.GetAll<Order>())
+foreach (var o in uow.OrderRepository.GetAll())
 {
     Console.WriteLine($"{o.OrderDate:g} {o.CustomerName}");
 }

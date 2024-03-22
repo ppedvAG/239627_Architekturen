@@ -11,7 +11,7 @@ namespace ppedv.CubesPizza.UI.Wpf.ViewModels
 {
     public partial class FoodAdminViewModel : ObservableObject
     {
-        IRepository repo;
+        IUnitOfWork uow;
         FoodService fs;
         public SaveCommand SaveCommand { get; set; }
 
@@ -19,7 +19,7 @@ namespace ppedv.CubesPizza.UI.Wpf.ViewModels
         private void AddNewPizza()
         {
             var p = new Pizza() { Name = "NEU", Price = 6.66m };
-            repo.Add<Pizza>(p);
+            uow.FoodRepository.Add(p);
             PizzaList.Add(p);
         }
 
@@ -52,12 +52,12 @@ namespace ppedv.CubesPizza.UI.Wpf.ViewModels
             }
         }
 
-        public FoodAdminViewModel(IRepository repo, FoodService fs)
+        public FoodAdminViewModel(IUnitOfWork uow, FoodService fs)
         {
-            this.repo = repo;
+            this.uow = uow;
             this.fs = fs;
-            PizzaList = new ObservableCollection<Pizza>(repo.GetAll<Pizza>());
-            SaveCommand = new SaveCommand(repo);
+            PizzaList = new ObservableCollection<Pizza>(uow.FoodRepository.GetAll());
+            SaveCommand = new SaveCommand(uow);
         }
 
 
@@ -73,9 +73,9 @@ namespace ppedv.CubesPizza.UI.Wpf.ViewModels
             return true;
         }
 
-        IRepository repo;
+        IUnitOfWork repo;
 
-        public SaveCommand(IRepository repo)
+        public SaveCommand(IUnitOfWork repo)
         {
             this.repo = repo;
         }

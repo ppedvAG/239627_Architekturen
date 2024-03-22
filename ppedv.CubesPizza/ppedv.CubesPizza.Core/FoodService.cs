@@ -5,16 +5,16 @@ namespace ppedv.CubesPizza.Core
 {
     public class FoodService : IFoodService
     {
-        private IRepository repository;
-        public FoodService(IRepository repository)
+        private IUnitOfWork uow;
+        public FoodService(IUnitOfWork uow)
         {
-            this.repository = repository;
+            this.uow = uow;
         }
 
         public IEnumerable<Pizza> GetSpeisekarte(bool nurVegetarisch = false)
         {
             //todo: mehr logic
-            var query = repository.GetAll<Pizza>();
+            var query = uow.FoodRepository.GetAll();
 
             if (nurVegetarisch)
                 query = query.Where(x => x.IsVegetarian == true);

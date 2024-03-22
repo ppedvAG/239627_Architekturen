@@ -5,11 +5,11 @@ namespace ppedv.CubesPizza.Core
 {
     public class OrderService : IOrderService
     {
-        IRepository repo;
+        IUnitOfWork repo;
         IFoodService foodService;
         IOvenControl ovenControl;
 
-        public OrderService(IRepository repo, IFoodService foodService, IOvenControl ovenControl)
+        public OrderService(IUnitOfWork repo, IFoodService foodService, IOvenControl ovenControl)
         {
             this.repo = repo;
             this.foodService = foodService;
@@ -25,7 +25,7 @@ namespace ppedv.CubesPizza.Core
 
             order.OrderDate = DateTime.Now;
 
-            repo.Add<Order>(order);
+            repo.OrderRepository.Add(order);
             repo.SaveAll();
         }
     }

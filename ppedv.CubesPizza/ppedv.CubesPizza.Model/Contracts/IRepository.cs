@@ -1,13 +1,25 @@
 ﻿namespace ppedv.CubesPizza.Model.Contracts
 {
-    public interface IRepository
+    public interface IRepository<T> where T : Entity
     {
-        T? GetById<T>(int id) where T : Entity;
-        IEnumerable<T> GetAll<T>() where T : Entity;
+        T? GetById(int id);
+        IEnumerable<T> GetAll();
 
-        void Add<T>(Entity entity) where T : Entity;
-        void Delete<T>(Entity entity) where T : Entity;
-        void Update<T>(Entity entity) where T : Entity;
+        void Add(Entity entity);
+        void Delete(Entity entity);
+        void Update(Entity entity);
+    }
+
+    public interface IOrderRepository : IRepository<Order>
+    {
+        IEnumerable<Order> GetActiveOrderByStoredProc();
+    }
+
+    public interface IUnitOfWork
+    {
+        IRepository<Pizza> FoodRepository { get; }
+        IRepository<Address> AddressRepository { get; }
+        IOrderRepository OrderRepository { get; }
 
         void SaveAll();
     }
