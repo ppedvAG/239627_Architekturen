@@ -3,7 +3,7 @@ using ppedv.CubesPizza.Model.Contracts;
 
 namespace ppedv.CubesPizza.Core
 {
-    public class FoodService
+    public class FoodService : IFoodService
     {
         private IRepository repository;
         public FoodService(IRepository repository)
