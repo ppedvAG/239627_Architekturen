@@ -5,11 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ppedv.CubesPizza.UI.Wpf.Views"
              mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:ppedv.CubesPizza.UI.Wpf.ViewModels"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:FoodAdminViewModel/>
+    </UserControl.DataContext>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Button>Laden</Button>
-            <Button>Speichern</Button>
+            <Button Command="{Binding SaveCommand}">Speichern</Button>
             <Button>Neu</Button>
             <Button>Löschen</Button>
         </StackPanel>
@@ -20,7 +24,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid />
+            <DataGrid ItemsSource="{Binding PizzaList}"
+                      SelectedItem="{Binding SelectedPizza}"/>
+
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
 
             <Grid Grid.Column="2">
@@ -35,11 +41,14 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label>Name</Label>
-                <TextBox Grid.Column="1"/>
+                <TextBox Grid.Column="1" Text="{Binding SelectedPizza.Name,UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Grid.Row="1">Preis</Label>
-                <TextBox Grid.Row="1" Grid.Column="1"/>
+                <UniformGrid Rows="1"  Grid.Row="1"  Grid.Column="1" >
+                    <TextBox   Text="{Binding SelectedPizza.Price,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="{Binding PreiseOhneMwST}" />
+                </UniformGrid>
                 <Label Grid.Row="2">Eigenschaften</Label>
-                <CheckBox Grid.Row="2" Grid.Column="1">Ist Vegetarisch</CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding SelectedPizza.IsVegetarian}" >Ist Vegetarisch</CheckBox>
 
             </Grid>
 

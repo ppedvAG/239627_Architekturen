@@ -9,12 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <PackageReference Include="AdonisUI" Version="1.17.1" />
+    <PackageReference Include="AdonisUI.ClassicTheme" Version="1.17.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AdonisUI" Version="1.17.1" />
-    <PackageReference Include="AdonisUI.ClassicTheme" Version="1.17.1" />
+    <ProjectReference Include="..\ppedv.CubesPizza.Core\ppedv.CubesPizza.Core.csproj" />
+    <ProjectReference Include="..\ppedv.CubesPizza.Data.EfCore\ppedv.CubesPizza.Data.EfCore.csproj" />
+    <ProjectReference Include="..\ppedv.CubesPizza.Model\ppedv.CubesPizza.Model.csproj" />
   </ItemGroup>
 
 </Project>
